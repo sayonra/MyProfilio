@@ -8,7 +8,259 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://unpkg.com/scrollreveal"></script>
 
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root{
+      --bg1:#070A1A;
+      --bg2:#0B1630;
+      --card:rgba(255,255,255,0.06);
+      --stroke:rgba(255,255,255,0.12);
+      --text:#EAF0FF;
+      --muted:#9AA7C7;
+      --primary:#6D5BFF;
+      --accent:#00E5FF;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: system-ui, sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      color:var(--text);
+      background: radial-gradient(circle at top, var(--bg2), var(--bg1));
+      overflow-x:hidden;
+    }
+
+    a{text-decoration:none; color:inherit;}
+
+    /* floating glow background */
+    body::before{
+      content:"";
+      position:fixed;
+      width:600px;
+      height:600px;
+      background:var(--primary);
+      filter:blur(160px);
+      opacity:0.15;
+      top:-200px;
+      left:-200px;
+      z-index:-1;
+    }
+
+    header{
+      position:fixed;
+      width:100%;
+      top:0;
+      left:0;
+      padding:18px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(10,15,35,0.5);
+      backdrop-filter: blur(14px);
+      border-bottom:1px solid var(--stroke);
+      z-index:100;
+    }
+
+    .logo{
+      font-weight:800;
+      color:var(--accent);
+      letter-spacing:1px;
+    }
+
+    nav a{
+      margin-left:22px;
+      font-size:14px;
+      color:var(--muted);
+      transition:.3s;
+    }
+
+    nav a:hover{
+      color:var(--accent);
+    }
+
+    section{
+      padding:90px 8%;
+    }
+
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:40px;
+    }
+
+    .hero-text h1{
+      font-size:56px;
+      background:linear-gradient(90deg,var(--accent),var(--primary));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero-text h3{
+      color:var(--muted);
+      margin:8px 0;
+    }
+
+    .hero-text span{
+      color:var(--accent);
+    }
+
+    .hero-text p{
+      color:var(--muted);
+      max-width:520px;
+      font-size:14px;
+      margin:12px 0;
+      line-height:1.6;
+    }
+
+    .btns{
+      display:flex;
+      gap:12px;
+      margin-top:18px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:10px 18px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--primary),var(--accent));
+      color:#000;
+      font-weight:700;
+      font-size:13px;
+      transition:.3s;
+    }
+
+    .btn:hover{
+      transform:translateY(-3px);
+    }
+
+    .outline{
+      background:transparent;
+      border:1px solid var(--stroke);
+      color:var(--text);
+    }
+
+    .avatar{
+      width:300px;
+      height:300px;
+      border-radius:30px;
+      object-fit:cover;
+      border:1px solid var(--stroke);
+      box-shadow:0 0 40px rgba(109,91,255,0.25);
+    }
+
+    /* TITLE */
+    .title{
+      font-size:30px;
+      margin-bottom:25px;
+    }
+
+    /* ABOUT */
+    .about p{
+      color:var(--muted);
+      max-width:750px;
+      line-height:1.7;
+    }
+
+    /* GRID */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:18px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      padding:20px;
+      border-radius:16px;
+      transition:.3s;
+      backdrop-filter: blur(10px);
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+      border-color:var(--accent);
+    }
+
+    .card i{
+      font-size:30px;
+      color:var(--accent);
+    }
+
+    .card h3{
+      margin:10px 0;
+    }
+
+    .card p{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* PROJECT */
+    .project{
+      position:relative;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid var(--stroke);
+    }
+
+    .project img{
+      width:100%;
+      height:210px;
+      object-fit:cover;
+      transition:.4s;
+    }
+
+    .project:hover img{
+      transform:scale(1.1);
+    }
+
+    .overlay{
+      position:absolute;
+      bottom:0;
+      width:100%;
+      padding:14px;
+      background:linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      font-weight:600;
+    }
+
+    /* CONTACT */
+    form{
+      max-width:520px;
+      display:grid;
+      gap:12px;
+    }
+
+    input,textarea{
+      padding:12px;
+      border-radius:10px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.03);
+      color:var(--text);
+      outline:none;
+    }
+
+    footer{
+      text-align:center;
+      padding:25px;
+      color:var(--muted);
+      border-top:1px solid var(--stroke);
+    }
+
+    @media(max-width:768px){
+      .hero{
+        flex-direction:column;
+        text-align:center;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -80,3 +332,37 @@
   <h2 class="title">Projects</h2>
   <div class="grid">
 
+    <div class="project">
+      <img src="ARTIFICIAL-INTELLIGENCE.jpg" />
+      <div class="overlay">AI Project</div>
+    </div>
+
+    <div class="project">
+      <img src="EJiVqw.webp" />
+      <div class="overlay">Web App</div>
+    </div>
+
+    <div class="project">
+      <img src="maxresdefault.jpg" />
+      <div class="overlay">Mobile App</div>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="title">Contact</h2>
+  <form>
+    <input placeholder="Name" />
+    <input placeholder="Email" />
+    <textarea rows="5" placeholder="Message"></textarea>
+    <button class="btn">Send</button>
+  </form>
+</section>
+
+<footer>
+  © 2026 Vet Chhaykey | Built with modern UI
+</footer>
+
+</body>
+</html>
