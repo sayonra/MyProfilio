@@ -1,5 +1,18 @@
 :root{
-  color:var(--muted);
+  --bg:#0f0f0f;
+  --text:#ffffff;
+  --muted:#a0a0a0;
+  --primary:#6c63ff;
+  --accent:#00e5ff;
+  --card:#1a1a1a;
+  --stroke:rgba(255,255,255,0.1);
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  margin:0;
+  font-family:sans-serif;
 }
 
 nav a:hover{color:var(--accent);}
@@ -90,4 +103,8 @@ input,textarea{
   color:var(--text);
 }
 
-footer{text-align:center; padding:25px; color:var(--muted);}
+footer{
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
+}
